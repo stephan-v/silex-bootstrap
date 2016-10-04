@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class HotelController {
@@ -17,11 +18,9 @@ class HotelController {
     {
         $name = 'John Doe';
 
-        $body = $app['twig']->render('hello.twig', array(
+        return $app['twig']->render('hello.twig', array(
             'name' => $name,
         ));
-
-        return new Response($body, 200, array('Cache-Control' => 's-maxage=3600, public'));
     }
 
     /**
@@ -39,9 +38,11 @@ class HotelController {
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        return 'Storing a newly created resource in storage.';
+        return $request->get('name');
+
+
     }
 
     /**

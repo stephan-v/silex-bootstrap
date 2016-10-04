@@ -5,7 +5,8 @@
         "vlucas/phpdotenv": "^2.4",
         "twig/twig": "^1.26",
         "doctrine/dbal": "~2.2",
-        "silex/web-profiler": "^2.0"
+        "silex/web-profiler": "^2.0",
+        "symfony/twig-bridge": "^3.1"
     },
     "autoload": {
         "psr-4": {

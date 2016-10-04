@@ -4,6 +4,11 @@
  * This is a bloated front controller that needs trimming.
  */
 
+use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\WebProfilerServiceProvider;
+use Silex\Provider\HttpFragmentServiceProvider;
+use Silex\Provider\ServiceControllerServiceProvider;
+
 // Autoloader.
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -33,15 +38,12 @@ $bookSegment = $app['db']->fetchAll('SELECT * FROM booksegment');
 // Debugging enabled.
 $app['debug'] = true;
 
-// Register Twig and specify the views directory.
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
+$app->register(new HttpFragmentServiceProvider());
+$app->register(new ServiceControllerServiceProvider());
+$app->register(new TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../resources/views'
 ));
-$app->register(new Silex\Provider\HttpFragmentServiceProvider());
-$app->register(new Silex\Provider\ServiceControllerServiceProvider());
-
-// Web profiler(debugbar, performance monitor, etc.).
-$app->register(new Silex\Provider\WebProfilerServiceProvider(), array(
+$app->register(new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/../cache/profiler',
     'profiler.mount_prefix' => '/_profiler', // this is the default
 ));
