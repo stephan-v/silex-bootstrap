@@ -1,5 +1,9 @@
 <?php
 
+// For lack of a better place we are currently storing the dotenv library import here.
+$dotenv = new Dotenv\Dotenv(__DIR__.'/../');
+$dotenv->load();
+
 /*
 |--------------------------------------------------------------------------
 | Register our service providers
