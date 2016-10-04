@@ -14,7 +14,7 @@ class HotelController {
      */
     public function index(Application $app)
     {
-        $name = 'Bill fuckin Murray';
+        $name = 'John Doe';
 
         return $app['twig']->render('hello.twig', array(
             'name' => $name,
