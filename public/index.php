@@ -35,7 +35,7 @@ $app['debug'] = true;
 
 // Register Twig and specify the views directory.
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../resources/views',
+    'twig.path' => __DIR__.'/../resources/views'
 ));
 $app->register(new Silex\Provider\HttpFragmentServiceProvider());
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
