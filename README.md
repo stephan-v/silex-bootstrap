@@ -1,7 +1,7 @@
 # silex-bootstrap
 
 
-### Installation
+### PHP ecosystem installation
 
 ```
 composer update
@@ -9,6 +9,34 @@ composer update
 
 ```
 rename .env.example to .env
+```
+
+### NPM ecosystem installation
+
+Make sure you have npm installed.
+
+Install gulp globally
+
+```
+npm install --global gulp-cli
+```
+
+Install the local npm modules
+
+```
+npm install
+```
+
+Run gulp with webpack
+
+```
+gulp
+```
+
+Or let gulp watch for changes
+
+```
+gulp watch
 ```
 
 ### Deployment
