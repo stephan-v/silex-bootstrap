@@ -1,55 +1,43 @@
 <?php
 
-/**
- * This is a bloated front controller that needs trimming.
- */
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| our application. We just need to utilize it! We'll simply require it
+| into the script here so that we don't have to worry about manual
+| loading any of our classes later on. It feels nice to relax.
+|
+*/
 
-use Silex\Provider\TwigServiceProvider;
-use Silex\Provider\WebProfilerServiceProvider;
-use Silex\Provider\HttpFragmentServiceProvider;
-use Silex\Provider\ServiceControllerServiceProvider;
-
-// Autoloader.
 require_once __DIR__.'/../vendor/autoload.php';
 
-// dotenv example for managing environment constants.
-$dotenv = new Dotenv\Dotenv(__DIR__.'/..');
-$dotenv->load();
+/*
+|--------------------------------------------------------------------------
+| Turn On The Lights
+|--------------------------------------------------------------------------
+|
+| We need to illuminate PHP development, so let us turn on the lights.
+| This bootstraps the framework and gets it ready for use, then it
+| will load up this application so that we can run it and send
+| the responses back to the browser and delight our users.
+|
+*/
 
-// Main app instance and front controller hook.
-$app = new Silex\Application();
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
-// Database connection and dotenv example.
-$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'dbs.options' => array (
-        'mysql_read' => array(
-            'driver'    => 'pdo_mysql',
-            'host'      => getenv('DB_HOST'),
-            'dbname'    => getenv('DB_DATABASE'),
-            'user'      => getenv('DB_USERNAME'),
-            'password'  => getenv('DB_PASSWORD'),
-            'charset'   => 'utf8mb4',
-        )
-    )
-));
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request
+| through the kernel, and send the associated response back to
+| the client's browser allowing them to enjoy the creative
+| and wonderful application we have prepared for them.
+|
+*/
 
-$bookSegment = $app['db']->fetchAll('SELECT * FROM booksegment');
-
-// Debugging enabled.
-$app['debug'] = true;
-
-$app->register(new HttpFragmentServiceProvider());
-$app->register(new ServiceControllerServiceProvider());
-$app->register(new TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../resources/views'
-));
-$app->register(new WebProfilerServiceProvider(), array(
-    'profiler.cache_dir' => __DIR__.'/../cache/profiler',
-    'profiler.mount_prefix' => '/_profiler', // this is the default
-));
-
-// Grab our routes file.
-require_once __DIR__.'/../routes/web.php';
-
-// Turn on the fucking lights.
 $app->run();
