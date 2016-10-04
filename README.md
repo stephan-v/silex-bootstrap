@@ -16,3 +16,9 @@ rename .env.example to .env
 ```
 composer dump-autoload --optimize
 ```
+
+to remove the classmap simply:
+
+```
+composer update
+```
