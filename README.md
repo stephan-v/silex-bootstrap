@@ -1,5 +1,12 @@
 # silex-bootstrap
 
-composer update
 
+### Installing
+
+```
+composer update
+```
+
+```
 rename .env.example to .env
+```
