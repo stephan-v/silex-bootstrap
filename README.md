@@ -1,7 +1,7 @@
 # silex-bootstrap
 
 
-### Installing
+### Installation
 
 ```
 composer update
